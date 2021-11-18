@@ -7,6 +7,7 @@ import React, {
   useState,
 } from 'react';
 
+import { ENV } from '../.env';
 import { Errors } from '../enums/errors.enum';
 import { User } from '../models/user.model';
 import { StorageService } from '../services/storage.service';
@@ -21,7 +22,6 @@ interface AuthContextType {
   processUser: (token: string) => Promise<void>;
 }
 
-const UserMockId = 2;
 const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
 export function AuthProvider({
@@ -39,7 +39,7 @@ export function AuthProvider({
     setLoading(true);
 
     try {
-      const userData = await UserApi.getUser(UserMockId);
+      const userData = await UserApi.getUser(ENV.mockUserId);
 
       if ('error' in userData) setError(userData.error);
       else setUser(userData.data);

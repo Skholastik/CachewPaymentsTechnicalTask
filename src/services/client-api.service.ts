@@ -1,7 +1,9 @@
 import axios from 'axios';
 
+import { ENV } from '../.env';
+
 export const ClientApi = axios.create({
-  baseURL: 'https://reqres.in/',
+  baseURL: ENV.endpointUrl,
 });
 
 ClientApi.interceptors.response.use(
