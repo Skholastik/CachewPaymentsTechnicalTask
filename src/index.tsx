@@ -2,12 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 
+import Baseline from '@material-ui/core/CssBaseline';
+
 import { Routes } from './pages';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.Fragment>
     <BrowserRouter>
+      <Baseline />
       <Routes />
     </BrowserRouter>
   </React.Fragment>,
