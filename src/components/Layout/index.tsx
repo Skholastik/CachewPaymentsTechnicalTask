@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react';
 
+import { Header } from '../Header';
 import { Sidebar } from '../Sidebar';
 import {
   LayoutContainer,
@@ -17,6 +18,7 @@ export const Layout: FC = ({ children }) => {
     <LayoutContainer maxWidth={false} disableGutters>
       <Sidebar toggleDrawer={toggleDrawer} isOpen={isOpen} />
       <LayoutWrapperBox>
+        <Header isOpen={isOpen} toggleDrawer={toggleDrawer} />
         <LayoutContentBox component="main">{children}</LayoutContentBox>
       </LayoutWrapperBox>
     </LayoutContainer>
