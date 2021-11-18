@@ -4,7 +4,9 @@ import { BrowserRouter } from 'react-router-dom';
 
 import Baseline from '@material-ui/core/CssBaseline';
 
-import { ThemeProvider } from './context/color';
+import { Notification } from './components/Notification';
+import { NotificationProvider } from './context/notification.context';
+import { ThemeProvider } from './context/theme.context';
 import { Routes } from './pages';
 import reportWebVitals from './reportWebVitals';
 
@@ -12,8 +14,11 @@ ReactDOM.render(
   <React.Fragment>
     <BrowserRouter>
       <ThemeProvider>
-        <Baseline />
-        <Routes />
+        <NotificationProvider>
+          <Baseline />
+          <Notification />
+          <Routes />
+        </NotificationProvider>
       </ThemeProvider>
     </BrowserRouter>
   </React.Fragment>,

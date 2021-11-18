@@ -4,4 +4,7 @@ export const ClientApi = axios.create({
   baseURL: 'https://reqres.in/',
 });
 
-ClientApi.interceptors.response.use((response) => response.data);
+ClientApi.interceptors.response.use(
+  (response) => response.data,
+  (response) => response.data,
+);
