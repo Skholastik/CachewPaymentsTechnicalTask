@@ -66,7 +66,7 @@ export const Login: FC = () => {
           <TextField
             autoFocus
             required
-            id="email"
+            type="email"
             label="Email Address"
             autoComplete="email"
             value={email}
@@ -76,6 +76,7 @@ export const Login: FC = () => {
           />
           <TextField
             required
+            type="password"
             variant="outlined"
             label="Password"
             autoComplete="password"
