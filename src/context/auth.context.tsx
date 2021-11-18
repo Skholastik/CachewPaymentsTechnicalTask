@@ -39,16 +39,16 @@ export function AuthProvider({
     setLoading(true);
 
     try {
-      const data = await UserApi.getUser(UserMockId);
+      const userData = await UserApi.getUser(UserMockId);
 
-      if ('error' in data) setError(data.error);
-      else setUser(user);
+      if ('error' in userData) setError(userData.error);
+      else setUser(userData.data);
     } catch (error) {
       setError(Errors.UnhandledError);
     } finally {
       setLoading(false);
     }
-  }, [setError, user]);
+  }, [setError]);
 
   const processUser = useCallback(
     async (token: string) => {
@@ -71,7 +71,7 @@ export function AuthProvider({
 
   useEffect(() => {
     if (isUserAuthorized()) loadUser();
-  });
+  }, [isUserAuthorized, loadUser]);
 
   return (
     <AuthContext.Provider value={memoizedValue}>

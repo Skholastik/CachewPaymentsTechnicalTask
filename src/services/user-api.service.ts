@@ -2,7 +2,7 @@ import { ErrorResponse } from '../models/error-response.model';
 import { User } from '../models/user.model';
 import { ClientApi } from './client-api.service';
 
-const getUser = (userId: number): Promise<User | ErrorResponse> => {
+const getUser = (userId: number): Promise<{ data: User } | ErrorResponse> => {
   return ClientApi.get(`api/users/${userId}`);
 };
 
