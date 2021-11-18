@@ -4,7 +4,8 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import loadable from '@loadable/component';
 
 import { AuthenticatedRoute } from '../components/AuthenticatedRoute';
-import Index from '../components/Loading';
+import { Layout } from '../components/Layout';
+import { Loading } from '../components/Loading';
 import { UnAuthenticatedRoute } from '../components/UnAuthenticatedRoute';
 import {
   AuthRouteProps,
@@ -16,22 +17,24 @@ import { RoutesEnum } from '../enums/routes.enum';
 
 const getPageComponent = (page: string) => {
   return loadable(() => import(`./${page}/`), {
-    fallback: <Index />,
+    fallback: <Loading />,
   });
 };
 
 export const Routes: FC = () => (
   <Switch>
     <AuthenticatedRoute exact path={AuthRouteProps}>
-      <Switch>
-        {AuthRoutes.map((route) => (
-          <Route
-            key={route.page}
-            component={getPageComponent(route.page)}
-            {...route.routeProps}
-          />
-        ))}
-      </Switch>
+      <Layout>
+        <Switch>
+          {AuthRoutes.map((route) => (
+            <Route
+              key={route.page}
+              component={getPageComponent(route.page)}
+              {...route.routeProps}
+            />
+          ))}
+        </Switch>
+      </Layout>
     </AuthenticatedRoute>
     <UnAuthenticatedRoute path={UnAuthRouteProps}>
       <Switch>

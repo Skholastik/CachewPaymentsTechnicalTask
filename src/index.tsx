@@ -4,14 +4,17 @@ import { BrowserRouter } from 'react-router-dom';
 
 import Baseline from '@material-ui/core/CssBaseline';
 
+import { ThemeProvider } from './context/color';
 import { Routes } from './pages';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.Fragment>
     <BrowserRouter>
-      <Baseline />
-      <Routes />
+      <ThemeProvider>
+        <Baseline />
+        <Routes />
+      </ThemeProvider>
     </BrowserRouter>
   </React.Fragment>,
   document.getElementById('root'),

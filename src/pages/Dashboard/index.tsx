@@ -5,7 +5,7 @@ import { Container } from '@material-ui/core';
 export const Dashboard: FC = () => {
   return (
     <Container component="main" maxWidth="xs">
-      Dashboard
+      Welcome to Dashboard!
     </Container>
   );
 };
