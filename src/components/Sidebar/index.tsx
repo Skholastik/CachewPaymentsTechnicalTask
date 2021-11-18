@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { ListItem, SvgIcon } from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
 
-import { RoutesEnum } from '../../enums/routes.enum';
+import { RoutePath } from '../../enums/route-path.enum';
 import {
   SidebarDrawer,
   SidebarList,
@@ -35,7 +35,7 @@ export const Sidebar: React.FC<SidebarProps> = (props) => {
             onClick={() => toggleDrawer(false)}
             exact
             component={NavLink}
-            to={RoutesEnum.Main}
+            to={RoutePath.Main}
           >
             <SidebarListItemIcon>
               <SvgIcon component={HomeIcon} />

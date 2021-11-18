@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Baseline from '@material-ui/core/CssBaseline';
 
 import { Notification } from './components/Notification';
+import { AuthProvider } from './context/auth.context';
 import { NotificationProvider } from './context/notification.context';
 import { ThemeProvider } from './context/theme.context';
 import { Routes } from './pages';
@@ -15,9 +16,11 @@ ReactDOM.render(
     <BrowserRouter>
       <ThemeProvider>
         <NotificationProvider>
-          <Baseline />
-          <Notification />
-          <Routes />
+          <AuthProvider>
+            <Baseline />
+            <Notification />
+            <Routes />
+          </AuthProvider>
         </NotificationProvider>
       </ThemeProvider>
     </BrowserRouter>

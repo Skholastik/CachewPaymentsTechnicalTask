@@ -13,7 +13,7 @@ import {
   UnAuthRouteProps,
   UnAuthRoutes,
 } from '../configs/app-routes.config';
-import { RoutesEnum } from '../enums/routes.enum';
+import { RoutePath } from '../enums/route-path.enum';
 
 const getPageComponent = (page: string) => {
   return loadable(() => import(`./${page}/`), {
@@ -47,6 +47,6 @@ export const Routes: FC = () => (
         ))}
       </Switch>
     </UnAuthenticatedRoute>
-    <Redirect path="*" exact to={RoutesEnum.Main} />
+    <Redirect path="*" exact to={RoutePath.Main} />
   </Switch>
 );

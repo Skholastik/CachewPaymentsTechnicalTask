@@ -16,7 +16,7 @@ export const Notification: FC = () => {
   return (
     <Snackbar
       open={!!notification.message}
-      autoHideDuration={10000}
+      autoHideDuration={5000}
       onClose={handleClose}
     >
       <Alert

@@ -1,15 +1,13 @@
 import React, { FC } from 'react';
 import { Redirect, Route, RouteProps } from 'react-router-dom';
 
-import { StatusCodes } from 'http-status-codes';
-
-import { RoutesEnum } from '../../enums/routes.enum';
-
-const errorCode = null;
+import { useAuthContext } from '../../context/auth.context';
+import { RoutePath } from '../../enums/route-path.enum';
 
 export const UnAuthenticatedRoute: FC<RouteProps> = (props: RouteProps) => {
-  if (errorCode !== StatusCodes.UNAUTHORIZED)
-    return <Redirect to={RoutesEnum.Dashboard} />;
+  const { isUserAuthorized } = useAuthContext();
+
+  if (isUserAuthorized()) return <Redirect to={RoutePath.Dashboard} />;
 
   return <Route {...props} />;
 };

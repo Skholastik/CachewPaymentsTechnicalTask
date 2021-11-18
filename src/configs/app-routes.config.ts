@@ -1,6 +1,6 @@
 import { RouteProps } from 'react-router';
 
-import { RoutesEnum } from '../enums/routes.enum';
+import { RoutePath } from '../enums/route-path.enum';
 
 export type RouteItem = {
   page: string;
@@ -8,11 +8,11 @@ export type RouteItem = {
 };
 
 export const AuthRoutes = [
-  { routeProps: { path: RoutesEnum.Main }, page: 'Dashboard' },
+  { routeProps: { path: RoutePath.Main }, page: 'Dashboard' },
 ] as RouteItem[];
 
 export const UnAuthRoutes = [
-  { routeProps: { path: RoutesEnum.Login }, page: 'Login' },
+  { routeProps: { path: RoutePath.Login }, page: 'Login' },
 ] as RouteItem[];
 
 export const AuthRouteProps = AuthRoutes.map(

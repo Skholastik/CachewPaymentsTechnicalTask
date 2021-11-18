@@ -6,5 +6,5 @@ export const ClientApi = axios.create({
 
 ClientApi.interceptors.response.use(
   (response) => response.data,
-  (response) => response.data,
+  ({ response }) => response.data,
 );
