@@ -1,5 +1,5 @@
 const storage = localStorage;
-const TOKEN = 'token';
+const TOKEN = 'cashew-auth-token';
 
 const setToken = (value: string): void => {
   storage.setItem(TOKEN, value);
