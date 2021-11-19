@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, SyntheticEvent } from 'react';
 
 import { Alert, Snackbar, Typography } from '@material-ui/core';
 
@@ -7,7 +7,7 @@ import useNotification from '../../context/notification.context';
 export const Notification: FC = () => {
   const { notification, clearNotification } = useNotification();
 
-  const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
+  const handleClose = (event?: SyntheticEvent, reason?: string) => {
     if (reason === 'clickaway') return;
 
     clearNotification();

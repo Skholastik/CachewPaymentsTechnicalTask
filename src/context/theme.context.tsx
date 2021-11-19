@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { createContext, FC, useContext, useState } from 'react';
 
 import { ThemeProvider as MaterialThemeProvider } from '@material-ui/core/styles';
 
@@ -8,12 +8,12 @@ type ColorContext = {
   toggleThemeMode: () => void;
 };
 
-export const ThemeModeContext = React.createContext<ColorContext>({
+export const ThemeModeContext = createContext<ColorContext>({
   toggleThemeMode: () => {},
 });
 
-export const ThemeProvider: React.FC = ({ children }) => {
-  const [mode, setMode] = React.useState(dark);
+export const ThemeProvider: FC = ({ children }) => {
+  const [mode, setMode] = useState(dark);
   const toggleThemeMode = () => {
     setMode((prevMode) => (prevMode === light ? dark : light));
   };

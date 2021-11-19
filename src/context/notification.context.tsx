@@ -1,5 +1,7 @@
 import React, {
   createContext,
+  ReactElement,
+  ReactNode,
   useCallback,
   useContext,
   useMemo,
@@ -26,8 +28,8 @@ const NotificationContext = createContext<NotificationContextType>(
 export function NotificationProvider({
   children,
 }: {
-  children: React.ReactNode;
-}): React.ReactElement {
+  children: ReactNode;
+}): ReactElement {
   const [notification, setNotification] =
     useState<Notification>(EmptyNotification);
 

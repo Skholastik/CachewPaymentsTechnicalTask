@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { ListItem, SvgIcon } from '@material-ui/core';
@@ -18,7 +18,7 @@ export type SidebarProps = {
   toggleDrawer: (drawer: boolean) => void;
 };
 
-export const Sidebar: React.FC<SidebarProps> = (props) => {
+export const Sidebar: FC<SidebarProps> = (props) => {
   const { isOpen, toggleDrawer } = props;
   const [drawerAnimation, setDrawerAnimation] = useState('default');
   return (

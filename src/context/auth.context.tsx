@@ -1,5 +1,7 @@
 import React, {
   createContext,
+  ReactElement,
+  ReactNode,
   useCallback,
   useContext,
   useEffect,
@@ -17,20 +19,22 @@ import useNotification from './notification.context';
 interface AuthContextType {
   loading: boolean;
   user: User;
-  setUser: (user: User) => void;
   isUserAuthorized: () => boolean;
-  processUser: (token: string) => Promise<void>;
+  setupUser: (token: string) => Promise<void>;
+  dropUser: () => void;
 }
+
+const EmptyUser = {} as User;
 
 const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
 export function AuthProvider({
   children,
 }: {
-  children: React.ReactNode;
-}): React.ReactElement {
+  children: ReactNode;
+}): ReactElement {
   const { setError } = useNotification();
-  const [user, setUser] = useState<User>({} as User);
+  const [user, setUser] = useState<User>(EmptyUser);
   const [loading, setLoading] = useState<boolean>(true);
 
   const isUserAuthorized = useCallback(() => StorageService.hasToken(), []);
@@ -50,7 +54,7 @@ export function AuthProvider({
     }
   }, [setError]);
 
-  const processUser = useCallback(
+  const setupUser = useCallback(
     async (token: string) => {
       StorageService.setToken(token);
       return loadUser();
@@ -58,15 +62,20 @@ export function AuthProvider({
     [loadUser],
   );
 
+  const dropUser = useCallback(() => {
+    StorageService.removeToken();
+    setUser(EmptyUser);
+  }, []);
+
   const memoizedValue = useMemo(
     () => ({
       loading,
       user,
       isUserAuthorized,
-      processUser,
-      setUser,
+      setupUser,
+      dropUser,
     }),
-    [loading, user, isUserAuthorized, processUser],
+    [loading, user, isUserAuthorized, setupUser, dropUser],
   );
 
   useEffect(() => {

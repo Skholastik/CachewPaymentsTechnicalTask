@@ -15,7 +15,7 @@ type LoginType = {
 
 export const useLogin = (): LoginType => {
   const history = useHistory();
-  const { processUser } = useAuthContext();
+  const { setupUser } = useAuthContext();
   const { setError } = useNotification();
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -27,7 +27,7 @@ export const useLogin = (): LoginType => {
 
         if ('error' in data) setError(data.error);
         else {
-          await processUser(data.token);
+          await setupUser(data.token);
           history.push(RoutePath.Dashboard);
         }
       } catch (error) {
@@ -36,7 +36,7 @@ export const useLogin = (): LoginType => {
         setLoading(false);
       }
     },
-    [history, processUser, setError],
+    [history, setupUser, setError],
   );
 
   return useMemo(
