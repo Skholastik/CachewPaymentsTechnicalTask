@@ -1,22 +1,20 @@
 # Getting Started with Cashew Payments Technical Task
 
-## Available Scripts
+## Quick Start
 
-In the project directory, you can run:
+You can install Project with Yarn or Npm respectively:
 
-### `yarn start`
+### `yarn install` or
 
-Runs the app in the development mode.\
+### `npm install`
+
+After in the project directory, you can run:
+
+### `yarn start` or
+### `npm start`
+
+That commands runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
