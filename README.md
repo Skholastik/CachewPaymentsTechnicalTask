@@ -1,4 +1,4 @@
-# Getting Started with Cashew Payments Technical Task
+# Getting Started with React Unicorn
 
 ## Quick Start
 
