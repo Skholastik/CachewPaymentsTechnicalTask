@@ -1,31 +1,36 @@
-import React from 'react';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { ErrorBoundary } from 'react-error-boundary';
+import { Provider as StoreProvider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-import Baseline from '@material-ui/core/CssBaseline';
+import { ErrorFallback } from '@/app/components/ErrorFallback';
+import { AppRoutes } from '@/app/routes';
+import { Store } from '@/app/store';
+import { Notification } from '@/features/Notifications';
+import { ThemeProvider } from '@/features/Theme';
+import { Spinner } from '@/shared';
 
-import { Notification } from './components/Notification';
-import { AuthProvider } from './context/auth.context';
-import { NotificationProvider } from './context/notification.context';
-import { ThemeProvider } from './context/theme.context';
-import { Routes } from './pages';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <React.Fragment>
-    <BrowserRouter>
-      <ThemeProvider>
-        <NotificationProvider>
-          <AuthProvider>
-            <Baseline />
+  <React.StrictMode>
+    <Suspense fallback={Spinner}>
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <ThemeProvider>
+          <CssBaseline />
+          <StoreProvider store={Store}>
             <Notification />
-            <Routes />
-          </AuthProvider>
-        </NotificationProvider>
-      </ThemeProvider>
-    </BrowserRouter>
-  </React.Fragment>,
-  document.getElementById('root'),
+            <Router>
+              <AppRoutes />
+            </Router>
+          </StoreProvider>
+        </ThemeProvider>
+      </ErrorBoundary>
+    </Suspense>
+  </React.StrictMode>,
+  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

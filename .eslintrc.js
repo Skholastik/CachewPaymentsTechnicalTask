@@ -1,70 +1,78 @@
 module.exports = {
   root: true,
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    sourceType: 'module',
-  },
-  plugins: ['react', '@typescript-eslint', 'import'],
   env: {
-    browser: true,
-    es2021: true,
     node: true,
-    jest: true,
+    es6: true,
   },
-  extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:react/recommended',
-    'plugin:react-hooks/recommended',
-    'plugin:prettier/recommended',
-    'prettier',
-  ],
-  rules: {
-    '@typescript-eslint/no-namespace': 'off',
-    '@typescript-eslint/no-var-requires': 'off',
-    '@typescript-eslint/no-non-null-assertion': 'off',
-    '@typescript-eslint/no-empty-function': 'off',
-    'react/prop-types': 'warn',
-    'prettier/prettier': [
-      'error',
-      {
-        singleQuote: true,
-        trailingComma: 'all',
-        endOfLine: 'auto',
-      },
-    ],
-    'import/order': [
-      'error',
-      {
-        groups: [
-          ['builtin', 'external'],
-          'internal',
-          ['sibling', 'parent', 'object', 'type', 'index'],
-        ],
-        'newlines-between': 'always',
-        alphabetize: {
-          order: 'asc',
-          caseInsensitive: true,
+  parserOptions: { ecmaVersion: 8, sourceType: 'module' },
+  ignorePatterns: ['node_modules/*'],
+  extends: ['eslint:recommended'],
+  overrides: [
+    {
+      files: ['**/*.ts', '**/*.tsx'],
+      parser: '@typescript-eslint/parser',
+      settings: {
+        react: { version: 'detect' },
+        'import/resolver': {
+          typescript: {},
         },
-        pathGroups: [
+      },
+      env: {
+        browser: true,
+        node: true,
+        es6: true,
+      },
+      extends: [
+        'eslint:recommended',
+        'plugin:import/errors',
+        'plugin:import/warnings',
+        'plugin:import/typescript',
+        'plugin:@typescript-eslint/recommended',
+        'plugin:react/recommended',
+        'plugin:react-hooks/recommended',
+        'plugin:prettier/recommended',
+        'plugin:testing-library/react',
+      ],
+      rules: {
+        'no-restricted-imports': [
+          'error',
           {
-            pattern: 'react*',
-            group: 'external',
-            position: 'before',
+            patterns: ['@/features/*/*'],
           },
         ],
-        pathGroupsExcludedImportTypes: ['react'],
+        'linebreak-style': ['error', 'unix'],
+        'react/prop-types': 'off',
+
+        'import/order': [
+          'error',
+          {
+            pathGroups: [
+              {
+                pattern: '@/**',
+                group: 'external',
+                position: 'after',
+              },
+            ],
+            groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object'],
+            'newlines-between': 'always',
+            alphabetize: { order: 'asc', caseInsensitive: true },
+          },
+        ],
+        'import/default': 'off',
+        'import/no-named-as-default-member': 'off',
+        'import/no-named-as-default': 'off',
+
+        'react/react-in-jsx-scope': 'off',
+
+        '@typescript-eslint/no-unused-vars': ['error'],
+
+        '@typescript-eslint/explicit-function-return-type': ['off'],
+        '@typescript-eslint/explicit-module-boundary-types': ['off'],
+        '@typescript-eslint/no-empty-function': ['off'],
+        '@typescript-eslint/no-explicit-any': ['off'],
+
+        'prettier/prettier': ['error', {}, { usePrettierrc: true }],
       },
-    ],
-    curly: ['error', 'multi'],
-  },
-  settings: {
-    react: {
-      version: 'detect',
     },
-    'import/internal-regex': '^client/',
-  },
+  ],
 };
