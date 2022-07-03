@@ -1,5 +1,5 @@
 import { ILoginParams } from '@/features/Auth';
-import { BaseQuery, TokenStorage } from '@/shared';
+import { BaseQuery } from '@/shared';
 
 const AuthQuery = BaseQuery.injectEndpoints({
   endpoints: (builder) => ({
@@ -10,12 +10,6 @@ const AuthQuery = BaseQuery.injectEndpoints({
         body: credentials,
       }),
       transformResponse: (response: { token: string }) => response.token,
-      onCacheEntryAdded: (_, { getCacheEntry }) => {
-        const token = getCacheEntry().data;
-        if (!token) return;
-
-        TokenStorage.setToken(token);
-      },
     }),
   }),
 });

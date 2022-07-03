@@ -15,4 +15,5 @@ export const TokenStorage = {
   getToken: () => Storage.getItem(TokenPrefix),
   setToken: (token: string) => Storage.setItem(TokenPrefix, token),
   hasToken: () => !!Storage.getItem(TokenPrefix),
+  removeToken: () => Storage.removeItem(TokenPrefix),
 };
